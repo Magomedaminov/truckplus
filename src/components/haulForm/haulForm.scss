@@ -1,0 +1,12 @@
+.haul-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  border-radius: 0.5rem;
+//   width: 375px;
+  background-color: var(--layout);
+  &__direction {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}

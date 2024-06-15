@@ -1,0 +1,28 @@
+.haulsList {
+  margin-left: 2em;
+
+  &__item,
+  &__nav {
+    display: flex;
+    min-width: 900px;
+    background-color: #93e0a8;
+    padding: 0.5rem;
+    align-items: center;
+    border: 1px solid #043A33;
+  }
+  &__nav {
+    background-color: var(--haulsList);
+  }
+  &__item-date {
+    width: 10%;
+  }
+  &__item-direction {
+    width: 15%;
+  }
+  &__item-cost {
+    width: 8%;
+  }
+  &__item-8 {
+    width: 8%;
+  }
+}
