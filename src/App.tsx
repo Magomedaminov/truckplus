@@ -59,7 +59,7 @@ function App() {
 
   function removeHaul(id: string, truckListId: string) {
     const prevHauls = haulsObj[truckListId];
-    const filteredHauls = prevHauls.filter((l) => l.id !== id); 
+    const filteredHauls = prevHauls.filter((l) => l.id !== id);
     setHauls({ ...haulsObj, [truckListId]: filteredHauls });
   }
 
@@ -75,31 +75,33 @@ function App() {
       emptyKm: props.emptyKm,
     };
     const prevHauls = haulsObj[truckListId];
-    const newHauls = [...prevHauls, newHaul]; 
+    const newHauls = [...prevHauls, newHaul];
     setHauls({ ...haulsObj, [truckListId]: newHauls });
   }
 
   return (
     <>
-      <div className="container">
-        <Bar />
+      {truckLists.map((tl) => {
+        const haulsForTruck = haulsObj[tl.id];
+        return (
+          <>
+            <div className="truckTitle">{tl.title}</div>
 
-        {truckLists.map((tl) => {
-          const haulsForTruck = haulsObj[tl.id];
-          return (
             <div key={tl.id} className="form-and-list">
               <HaulForm addHaul={addHaul} truckListId={tl.id} />
-              <div className="truckTitle">{tl.title}</div>
-              <HaulsList
-                id={tl.id}
-                hauls={haulsForTruck}
-                removeList={removeHaul}
-              />
+              <div className="hauls-list">
+                <Bar />
+                <HaulsList
+                  id={tl.id}
+                  hauls={haulsForTruck}
+                  removeList={removeHaul}
+                />
+                <Total />
+              </div>
             </div>
-          );
-        })}
-        <Total />
-      </div>
+          </>
+        );
+      })}
     </>
   );
 }

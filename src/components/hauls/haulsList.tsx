@@ -18,10 +18,10 @@ export type HaulType = {
 };
 
 export const HaulsList = (props: PropsType) => {
-  console.log(props.hauls)
-  
+  console.log(props.hauls);
+
   return props.hauls.map((l) => {
-    const onClickHandler = () => props.removeList(l.id, props.id)
+    const onClickHandler = () => props.removeList(l.id, props.id);
     const rubleKm = () => {
       return Math.round(l.cost / l.kilometers);
     };
@@ -45,11 +45,7 @@ export const HaulsList = (props: PropsType) => {
         <div className="haulsList__item-8">{rubleKm()}</div>
         <div className="haulsList__item-8">{gas()}</div>
         <div className="haulsList__item-8">{costOfGas()}</div>
-        <button
-          onClick={onClickHandler}
-        >
-          X
-        </button>
+        <button onClick={onClickHandler}>X</button>
       </div>
     );
   });

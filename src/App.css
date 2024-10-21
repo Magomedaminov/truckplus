@@ -4,15 +4,13 @@
   padding: 2rem;
   text-align: center;
 }
-.container {
-  display: flex;
-  flex-direction: column;  
-}
 .form-and-list {
   display: flex;
 }
-
+.hauls-list {
+  display: flex;
+  flex-direction: column;
+}
 .truckTitle {
   background-color: var(--layout);
-  margin-left: 2rem;
 }

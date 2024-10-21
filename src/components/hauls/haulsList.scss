@@ -1,6 +1,4 @@
 .haulsList {
-  margin-left: 2em;
-
   &__item,
   &__nav {
     display: flex;
@@ -8,7 +6,7 @@
     background-color: #93e0a8;
     padding: 0.5rem;
     align-items: center;
-    border: 1px solid #043A33;
+    border: 1px solid #043a33;
   }
   &__nav {
     background-color: var(--haulsList);
