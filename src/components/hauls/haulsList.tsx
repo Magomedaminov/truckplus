@@ -18,19 +18,17 @@ export type HaulType = {
 };
 
 export const HaulsList = (props: PropsType) => {
-  console.log(props.hauls);
-
   return props.hauls.map((l) => {
     const onClickHandler = () => props.removeList(l.id, props.id);
     const rubleKm = () => {
       return Math.round(l.cost / l.kilometers);
     };
     const gas = () => {
-      return l.l100 * (l.kilometers / 100);
+      return Math.round(l.l100 * (l.kilometers / 100));
     };
 
     const costOfGas = () => {
-      return l.l100 * (l.kilometers / 100) * l.literCost;
+      return Math.round(l.l100 * (l.kilometers / 100)) * l.literCost;
     };
 
     return (

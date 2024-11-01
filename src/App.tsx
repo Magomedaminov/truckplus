@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./App.scss";
 import { HaulForm, HaulFormType } from "./components/haulForm/haulForm";
 import { HaulsList } from "./components/hauls/haulsList";
 import { Total } from "./components/total/total";
@@ -9,16 +9,17 @@ import { v1 } from "uuid";
 type TruckListType = {
   id: string;
   title: string;
+  removeTruckList: (id: string) => void;
 };
 
 const truckListId1 = v1();
 const truckListId2 = v1();
 
 function App() {
-  const truckLists: Array<TruckListType> = [
-    { id: truckListId1, title: "k370mm53" },
-    { id: truckListId2, title: "k777mm53" },
-  ];
+  const [truckLists, setTruckLists] = useState<Array<TruckListType>>([
+    { id: truckListId1, title: "k370mm53", removeTruckList },
+    { id: truckListId2, title: "k777mm53", removeTruckList },
+  ]);
 
   const [haulsObj, setHauls] = useState({
     [truckListId1]: [
@@ -57,6 +58,13 @@ function App() {
     ],
   });
 
+  function removeTruckList(truckListId: string) {
+    const filteredList = truckLists.filter((l) => l.id !== truckListId);
+    setTruckLists(filteredList);
+    delete haulsObj[truckListId];
+    setHauls({ ...haulsObj });
+  }
+
   function removeHaul(id: string, truckListId: string) {
     const prevHauls = haulsObj[truckListId];
     const filteredHauls = prevHauls.filter((l) => l.id !== id);
@@ -83,9 +91,13 @@ function App() {
     <>
       {truckLists.map((tl) => {
         const haulsForTruck = haulsObj[tl.id];
+        const onClickHandler = () => tl.removeTruckList(tl.id);
         return (
           <>
-            <div className="truckTitle">{tl.title}</div>
+            <div className="truckTitle">
+              {tl.title}
+              <button onClick={onClickHandler}>x</button>
+            </div>
 
             <div key={tl.id} className="form-and-list">
               <HaulForm addHaul={addHaul} truckListId={tl.id} />
